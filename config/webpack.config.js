@@ -80,11 +80,11 @@ module.exports = function (webpackEnv) {
           : {},
       },
       {
-        loader: require.resolve("css-loader"),
+        loader: "css-loader",
         options: {
-          importLoaders: 1,
+          importLoaders: 2,
           modules: {
-            // localIdentName: "[name]__[local]__[hash:base64:5]",
+            localIdentName: "[name]__[local]__[hash:base64:5]",
           },
         },
       },
