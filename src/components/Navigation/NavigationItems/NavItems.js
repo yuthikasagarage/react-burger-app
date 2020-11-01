@@ -4,11 +4,11 @@ import NavItem from "./NavItem";
 
 const navItems = () => (
   <ul className={classes.Navitems}>
-    <NavItem link="/" activated="true">
+    <NavItem link="/" exact>
       Burger Builder
     </NavItem>
-    <NavItem link="/" activated="false">
-      Checkout
+    <NavItem link="/orders" exact>
+      Orders
     </NavItem>
   </ul>
 );
