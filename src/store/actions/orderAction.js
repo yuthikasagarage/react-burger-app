@@ -22,11 +22,11 @@ export const purchaseBurgerStart = () => {
   };
 };
 
-export const purchaseBurger = (orderData) => {
+export const purchaseBurger = (orderData, token) => {
   return (dispatch) => {
     dispatch(purchaseBurgerStart());
     axios
-      .post("/orders.json", orderData)
+      .post("/orders.json?auth=" + token, orderData)
       .then((response) => {
         dispatch(purchaseBurgerSuccess(response.data.name, orderData));
       })
@@ -51,22 +51,26 @@ export const fetchedOrdersSuccess = (orders) => {
 
 export const fetchedOrdersFailed = (err) => {
   return {
-    type: actionTypes.FETCH_INGREDIENT_FAILED,
+    type: actionTypes.FETCH_ORDERS_FAILED,
     error: err,
   };
 };
 
-export const fetchedOrdersStart = (err) => {
+export const fetchedOrdersStart = () => {
   return {
     type: actionTypes.FETCH_ORDERS_START,
   };
 };
 
-export const fetchedOrders = () => {
+export const fetchedOrders = (token, userId) => {
   return (dispatch) => {
     dispatch(fetchedOrdersStart());
+
+    const queryParams =
+      "?auth=" + token + '&orderBy="userId"&equalTo="' + userId + '"';
+
     axios
-      .get("/orders.json")
+      .get("/orders.json" + queryParams)
       .then((response) => {
         const fetchedOrders = [];
         for (let key in response.data) {
@@ -75,6 +79,7 @@ export const fetchedOrders = () => {
         dispatch(fetchedOrdersSuccess(fetchedOrders));
       })
       .catch((error) => {
+        console.log(error);
         dispatch(fetchedOrdersFailed(error));
       });
   };
