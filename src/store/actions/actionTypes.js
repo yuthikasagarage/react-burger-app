@@ -18,3 +18,8 @@ export const AUTH_SUCCESS = "AUTH_SUCCESS";
 export const AUTH_FAILED = "AUTH_FAILED";
 export const AUTH_LOGOUT = "AUTH_LOGOUT";
 export const AUTH_REDIRECT = "AUTH_REDIRECT";
+
+export const AUTH_INIT_LOGOUT = "AUTH_INIT_LOGOUT";
+export const AUTH_CHECK_TIMEOUT = "AUTH_CHECK_TIMEOUT";
+export const AUTH_USER = "AUTH_USER";
+export const AUTH_CHECK_INIT_STATE = "AUTH_CHECK_INIT_STATE";
